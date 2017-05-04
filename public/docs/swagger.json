@@ -21,6 +21,46 @@
     ],
     "paths": {
         "/input": {
+            "get": {
+                "summary": "Consulta dos parâmetros de entrada",
+                "description": "API para consulta dos parâmetros de entrada",
+                "tags": [
+                    "Input Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/input"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            },
             "put": {
                 "summary": "Alteração dos parâmetros de entrada",
                 "description": "API para alteração dos parâmetros de entrada",
@@ -67,6 +107,9 @@
                     },
                     "405": {
                         "description": "JSON inválido"
+                    },
+                    "502": {
+                        "description": "O servidor não respondeu dentro do tempo limite."
                     }
                 }
             }
