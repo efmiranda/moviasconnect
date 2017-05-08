@@ -1,0 +1,1811 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API de integração com os dispositivos produzidos pela Quanta Tecnologia\n",
+        "version": "1.0.0",
+        "title": "moviasConnect API",
+        "termsOfService": "https://moviasconnect.mybluemix.net/terms/",
+        "contact": {
+            "name": "suporte@quantatec.com.br"
+        },
+        "license": {
+            "name": "Quanta Tecnologia",
+            "url": "http://www.google.com.br"
+        }
+    },
+    "host": "moviasconnect.mybluemix.net",
+    "basePath": "/api",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/input": {
+            "get": {
+                "summary": "Consulta dos parâmetros de entrada",
+                "description": "API para consulta dos parâmetros de entrada",
+                "tags": [
+                    "Input Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/input"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Alteração dos parâmetros de entrada",
+                "description": "API para alteração dos parâmetros de entrada",
+                "tags": [
+                    "Input Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Mensagem enviada pelo servidor para o Rastreador contendo parâmetros de configuração para serem alterados",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/input"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    },
+                    "405": {
+                        "description": "JSON inválido"
+                    },
+                    "502": {
+                        "description": "O servidor não respondeu dentro do tempo limite."
+                    }
+                }
+            }
+        },
+        "/linearInput": {
+            "get": {
+                "summary": "Consulta dos parâmetros de entrada linear",
+                "description": "API para consulta dos parâmetros de entrada linear",
+                "tags": [
+                    "Linear Input Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/linearInput"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/output": {
+            "get": {
+                "summary": "Consulta dos parâmetros de configuração das Saídas",
+                "description": "API para consulta dos parâmetros de configuração das Saídas",
+                "tags": [
+                    "Output Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/output"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/identification": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Identificação",
+                "description": "API para consulta dos parâmetros de Identificação",
+                "tags": [
+                    "Identification Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/identification"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/configuration": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração",
+                "description": "API para consulta dos parâmetros de Configuração",
+                "tags": [
+                    "Configuration Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/configuration"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/simcard1": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração do Primeiro SIMCARD",
+                "description": "API para consulta dos parâmetros de Configuração do Primeiro SIMCARD",
+                "tags": [
+                    "SIMCARD1 Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/simcard"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/simcard2": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração do Segundo SIMCARD",
+                "description": "API para consulta dos parâmetros de Configuração do Segundo SIMCARD",
+                "tags": [
+                    "SIMCARD2 Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/simcard"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/accelerometer": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração do Acelerômetro",
+                "description": "API para consulta dos parâmetros de Configuração do Acelerômetro",
+                "tags": [
+                    "Accelerometer Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/accelerometer"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/virtualppc": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração do PPC Virtual",
+                "description": "API para consulta dos parâmetros de Configuração do PPC Virtual",
+                "tags": [
+                    "Virtual PPC Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/virtualppc"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/genericConfiguration": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração Genérica",
+                "description": "API para consulta dos parâmetros de Configuração Genérica",
+                "tags": [
+                    "Generic Configuration Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/genericConfiguration"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/ibuttonId": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração dos IDs de iButton",
+                "description": "API para consulta dos parâmetros de Configuração dos IDs de iButton",
+                "tags": [
+                    "iButton ID Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/ibuttonId"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/ibuttonConfiguration": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração dos iButtons",
+                "description": "API para consulta dos parâmetros de Configuração dos iButtons",
+                "tags": [
+                    "iButton Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/ibuttonConfiguration"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/ftp": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração FTP",
+                "description": "API para consulta dos parâmetros de Configuração FTP",
+                "tags": [
+                    "FTP Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/ftp"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "input": {
+            "type": "object",
+            "properties": {
+                "ignition": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 10,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar entrada ativada",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        },
+                        "mode": {
+                            "type": "string",
+                            "default": "virtual",
+                            "enum": [
+                                "fisico",
+                                "virtual"
+                            ]
+                        }
+                    }
+                },
+                "battery": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 10,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar entrada ativada",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        },
+                        "sleepOff": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    }
+                },
+                "accelerometer": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 65535,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar entrada ativada",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        },
+                        "sleepOff": {
+                            "type": "string",
+                            "default": "on",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    }
+                },
+                "jammer": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 60,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar entrada ativada",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        },
+                        "sleepOff": {
+                            "type": "string",
+                            "default": "on",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    }
+                },
+                "genericNegative1": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 1,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar entrada ativada",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        },
+                        "sleepOff": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    }
+                },
+                "genericpositive1": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 1,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar entrada ativada",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        },
+                        "sleepOff": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    }
+                },
+                "genericNegative2": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 1,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar entrada ativada",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        },
+                        "sleepOff": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    }
+                },
+                "genericNegative3": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 1,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar entrada ativada",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        },
+                        "sleepOff": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "useIbutton": {
+                            "type": "string",
+                            "default": "on",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "linearInput": {
+            "type": "object",
+            "properties": {
+                "gpsVelocity": {
+                    "type": "object",
+                    "properties": {
+                        "messageSend": {
+                            "type": "string",
+                            "description": "Se (never): Não gera mensagem quando “Violado” - Se (desviolated): Gera mensagem somente quando Desviolada - Se (violated): Gera mensagem para a central quando “Violada”  Se (both): Gera mensagem quando Violada e Desviolada",
+                            "default": "both",
+                            "enum": [
+                                "never",
+                                "desviolated",
+                                "violated",
+                                "both"
+                            ]
+                        },
+                        "startBlocker": {
+                            "type": "string",
+                            "description": "Informa quais saídas serão acionadas se esta entrada for “Violada” ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "startGenericNegative0": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "violationTime": {
+                            "type": "number",
+                            "description": "Tempo para considerar esta entrada “Violada” após ser detectado que ela se encontra no seu estado “Ativo” expresso em segundos ",
+                            "default": 1,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "enableSinister": {
+                            "type": "string",
+                            "description": "Informa se a violação desta entrada caracteriza sinistro para efeito de determinação do intervalo de tempo a ser utilizado na atualização da tabela de log das posições do veículo (GPS) Se (off): Tempo de Atualização = LOG_TEMPO_NORMAL  - Se (on): Tempo de Atualização = LOG_TEMPO_SINISTRO",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "lowerLimit": {
+                            "type": "number",
+                            "default": 20,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "upperLimit": {
+                            "type": "number",
+                            "default": 20,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "whenInputViolate": {
+                            "type": "string",
+                            "default": "outside range",
+                            "enum": [
+                                "inside range",
+                                "outside range",
+                                "state change"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "output": {
+            "type": "object",
+            "properties": {
+                "block": {
+                    "type": "object",
+                    "properties": {
+                        "outputStatus": {
+                            "type": "string",
+                            "description": "Se (centralOn): Saída Acionada pela Central ou permanentemente - Se (trackerOn): Saída Acionada pelo Rastreador - Se (off): Saída Desligada",
+                            "default": "off",
+                            "enum": [
+                                "off",
+                                "trackerOn",
+                                "centralOn"
+                            ]
+                        },
+                        "activationTime": {
+                            "type": "number",
+                            "description": "Indica quanto tempo a Saída ficará acionada expresso em segundos",
+                            "default": 10,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "activationPermanent": {
+                            "type": "string",
+                            "description": "Indica a forma de acionamento da Saída: Se (on): Saída acionada continuamente, isto é, a saída permanecerá ativa enquanto o evento que gerou o acionamento desta saída permanecer violado (O Tempo de Acionamento da Saída é iniciado somente quando o evento que gerou seu acionamento sair do estado “violado”). Se (off): Saída acionada uma única vez, ou seja, a saída será acionada pelo tempo determinado pelos parâmetros 01 e 02 sendo desligada em seguida, mesmo que o evento que gerou o acionamento desta saída permaneça violado. Para que um novo acionamento da saída seja efetuado, é necessário que o evento gerador do acionamento saia do estado de violação e seja violado novamente (O Tempo de Acionamento da Saída é iniciado simultaneamente ao viola-la). Obs.: Parâmetro não é válido quando o acionamento é feito via Central (acionamento via Central é permanente)",
+                            "default": "on",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar saída acionada 'Obs: Ambas sáidas são negativas'",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        }
+                    }
+                },
+                "genericNegative": {
+                    "type": "object",
+                    "properties": {
+                        "genericNegativeStatus": {
+                            "type": "string",
+                            "description": "Se (centralOn): Saída Acionada pela Central ou permanentemente - Se (trackerOn): Saída Acionada pelo Rastreador - Se (off): Saída Desligada",
+                            "default": "off",
+                            "enum": [
+                                "off",
+                                "trackerOn",
+                                "centralOn"
+                            ]
+                        },
+                        "activationTime": {
+                            "type": "number",
+                            "description": "Indica quanto tempo a Saída ficará acionada expresso em segundos",
+                            "default": 10,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "activationPermanent": {
+                            "type": "string",
+                            "description": "Indica a forma de acionamento da Saída: Se (on): Saída acionada continuamente, isto é, a saída permanecerá ativa enquanto o evento que gerou o acionamento desta saída permanecer violado (O Tempo de Acionamento da Saída é iniciado somente quando o evento que gerou seu acionamento sair do estado “violado”). Se (off): Saída acionada uma única vez, ou seja, a saída será acionada pelo tempo determinado pelos parâmetros 01 e 02 sendo desligada em seguida, mesmo que o evento que gerou o acionamento desta saída permaneça violado. Para que um novo acionamento da saída seja efetuado, é necessário que o evento gerador do acionamento saia do estado de violação e seja violado novamente (O Tempo de Acionamento da Saída é iniciado simultaneamente ao viola-la). Obs.: Parâmetro não é válido quando o acionamento é feito via Central (acionamento via Central é permanente)",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "logicalStartLevel": {
+                            "type": "string",
+                            "description": "Informa estado lógico para considerar saída acionada 'Obs: Ambas sáidas são negativas'",
+                            "default": "12/24V",
+                            "enum": [
+                                0,
+                                "12/24V"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "identification": {
+            "type": "object",
+            "properties": {
+                "product": {
+                    "type": "object",
+                    "properties": {
+                        "productId": {
+                            "type": "string",
+                            "description": "Identificador do Produto",
+                            "default": "37",
+                            "minLength": 2,
+                            "maxLength": 2
+                        },
+                        "productVersion": {
+                            "type": "string",
+                            "description": "Versão do Produto",
+                            "default": "00",
+                            "minLength": 2,
+                            "maxLength": 2
+                        },
+                        "productSerialNumber": {
+                            "type": "string",
+                            "description": "Número de Série do Produto",
+                            "minLength": 8,
+                            "maxLength": 8
+                        }
+                    }
+                },
+                "primaryServer": {
+                    "type": "object",
+                    "properties": {
+                        "ipAddress": {
+                            "type": "string",
+                            "description": "Endereço IP do Servidor",
+                            "default": "0.0.0.0",
+                            "minLength": 7,
+                            "maxLength": 15
+                        },
+                        "ipPort": {
+                            "type": "number",
+                            "default": 0
+                        }
+                    }
+                },
+                "secondaryServer": {
+                    "type": "object",
+                    "properties": {
+                        "ipAddress": {
+                            "type": "string",
+                            "description": "Endereço IP do Servidor Backup",
+                            "default": "0.0.0.0",
+                            "minLength": 7,
+                            "maxLength": 15
+                        },
+                        "ipPort": {
+                            "type": "number",
+                            "default": 0
+                        }
+                    }
+                }
+            }
+        },
+        "configuration": {
+            "type": "object",
+            "properties": {
+                "tracking": {
+                    "type": "object",
+                    "properties": {
+                        "send": {
+                            "type": "number",
+                            "description": "Intervalo de Tempo em segundos para envio da Tabela de LOG GPS para a central (0=desabilitado; 65535= envia automaticamente quando tabela for gerada)",
+                            "default": 65535,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "normaly": {
+                            "type": "number",
+                            "description": "Intervalo de Tempo para adicionar registro na Tabela de LOG GPS em condição de não sinistro",
+                            "default": 30,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "sinister": {
+                            "type": "number",
+                            "description": "Intervalo de Tempo para adicionar registro na Tabela de LOG GPS em condição de sinistro",
+                            "default": 60,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "wakeUp": {
+                            "type": "number",
+                            "description": "Tempo máximo em segundos que o Rastreador pode permanecer sem efetuar troca de mensagens com a Central, caso este tempo seja excedido, é gerada uma Tabela de Estado (0=desabilitado)",
+                            "default": 3600,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                },
+                "timeOuts": {
+                    "type": "object",
+                    "properties": {
+                        "timeNoMessage": {
+                            "type": "number",
+                            "description": "Tempo máximo sem receber um ack da central para resetar a peça",
+                            "default": 900,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "timeToSleep": {
+                            "type": "number",
+                            "description": "Tempo em segundos para entrar em SLEEP MODE. Apenas entra em SLEEP quando nenhuma entrada estiver violada, nenhuma saída estiver acionada e não estiver se comunicando com a Central. Se programado valor 0 a peça entra em sleep mode imediatamente.Se programado 65535, desabilita a função SLEEP",
+                            "default": 20,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "timeMessageLifetime": {
+                            "type": "number",
+                            "description": "Tempo de vida das mensagens em segundos. Ignora mensagens geradas N segundos atrás (parâmetro ignorado se timestamp GPS for inválido)",
+                            "default": 65500,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "timeSinister": {
+                            "type": "number",
+                            "description": "Tempo total em que o módulo deve ficar em modo sinistro",
+                            "default": 300,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "ServerTimeOut": {
+                            "type": "number",
+                            "description": "Tempo para envio da mensagem de Wake Up, quando o Rastreador estiver em Sleep em segundos ( 0 – desabilitado)",
+                            "default": 3600,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                }
+            }
+        },
+        "simcard": {
+            "type": "object",
+            "properties": {
+                "gprsNetwork": {
+                    "type": "object",
+                    "required": [
+                        "apn",
+                        "user",
+                        "password",
+                        "connectionTime"
+                    ],
+                    "properties": {
+                        "apn": {
+                            "type": "string",
+                            "description": "APN da operadora de telefonia celular para conexão GPRS",
+                            "default": "zap.vivo.com.br"
+                        },
+                        "user": {
+                            "type": "string",
+                            "description": "Login da operadora de telefonia celular para conexão GPRS",
+                            "default": "vivo"
+                        },
+                        "password": {
+                            "type": "string",
+                            "format": "password",
+                            "description": "Senha da operadora de telefonia celular para conexão GPRS ",
+                            "default": "vivo"
+                        },
+                        "connectionTime": {
+                            "type": "number",
+                            "description": "Intervalo de Tempo em segundos para enviar mensagem do protocolo “Keep Connected” (0x11). Esta mensagem apenas é enviada após o Rastreador ficar “TEMPO_REFRESH_CONEXÃO” segundos sem troca de mensagens e serve para informar ao Servidor o IP: PORT atual do Rastreador. (0=envio desabilitado)",
+                            "default": 73,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                }
+            }
+        },
+        "accelerometer": {
+            "type": "object",
+            "properties": {
+                "sensitivity": {
+                    "type": "object",
+                    "required": [
+                        "wakeUp",
+                        "alarm"
+                    ],
+                    "properties": {
+                        "wakeUp": {
+                            "type": "number",
+                            "description": "Valor para “retirar” o microcontrolador de Power Down.",
+                            "default": 125,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "alarm": {
+                            "type": "number",
+                            "description": "Valor para considerar que o micro realmente é para sair de Power Down.",
+                            "default": 160,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                }
+            }
+        },
+        "virtualppc": {
+            "type": "object",
+            "properties": {
+                "battery12V": {
+                    "type": "object",
+                    "properties": {
+                        "off": {
+                            "type": "number",
+                            "description": "Valor de tensão para considerar veículo desligado (para veículos com bateria de 12V).",
+                            "default": 130,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "on": {
+                            "type": "number",
+                            "description": "Valor mínimo para considerar veículo ligado (para veículos com bateria de 12V)",
+                            "default": 136,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                },
+                "battery24V": {
+                    "type": "object",
+                    "properties": {
+                        "off": {
+                            "type": "number",
+                            "description": "Valor de tensão para considerar veículo desligado (para veículos com bateria de 12V).",
+                            "default": 248,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "on": {
+                            "type": "number",
+                            "description": "Valor mínimo para considerar veículo ligado (para veículos com bateria de 12V)",
+                            "default": 254,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                }
+            }
+        },
+        "genericConfiguration": {
+            "type": "object",
+            "properties": {
+                "configurations": {
+                    "type": "object",
+                    "properties": {
+                        "updateInterval": {
+                            "type": "number",
+                            "description": "Tempo para verificar versão de FW via FTP em dias",
+                            "default": 0,
+                            "minimum": 0,
+                            "maximum": 254
+                        },
+                        "resetLogTimeCount": {
+                            "type": "string",
+                            "description": "Usado para reinicializar ou não a contagem de tempo entre logs quando gerada tabela por heading. ",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "enableAngleChange": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "enableGenericPositive": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "protocol": {
+                            "type": "string",
+                            "description": "Usado pata configurar o socket de comunicação entre rastreador e central",
+                            "default": "UDP",
+                            "enum": [
+                                "UDP",
+                                "TCP"
+                            ]
+                        },
+                        "odometerInitialValue": {
+                            "type": "number",
+                            "description": "Valor da quilometragem inicial do odômetro.",
+                            "default": 0,
+                            "minimum": 0,
+                            "maximum": 2147483647
+                        },
+                        "angleHeadingLimit": {
+                            "type": "number",
+                            "description": "Ângulo para detectar change direction Faixa: 0(desabilitado) a 255 ",
+                            "default": 45,
+                            "minimum": 0,
+                            "maximum": 255
+                        },
+                        "angleHeadingTime": {
+                            "type": "number",
+                            "description": "Tempo entre amostras para fazer o cálculo da variação de ângulo do change direction. Faixa: 0 (desabilitado) a 30s. Se tentar embarcar um valor acima de 30s, será considerado 0. ",
+                            "default": 2,
+                            "minimum": 0,
+                            "maximum": 30
+                        }
+                    }
+                }
+            }
+        },
+        "ibuttonId": {
+            "type": "object",
+            "properties": {
+                "ibuttons": {
+                    "type": "array",
+                    "description": "Configuração dos IDs de iButton de 0 até o limite de 159.",
+                    "minLength": 12,
+                    "maxLength": 12,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ibuttonConfiguration": {
+            "type": "object",
+            "properties": {
+                "operation": {
+                    "type": "object",
+                    "properties": {
+                        "mode": {
+                            "type": "string",
+                            "description": "Flags que indicam modo de funcionamento do iButton (local): Valida localmente através dos IDs gravados em TCONF_IBUTTON - (server): Valida via servidor (aceita qualquer ID)",
+                            "default": "server",
+                            "enum": [
+                                "local",
+                                "server"
+                            ]
+                        },
+                        "timerLearning": {
+                            "type": "number",
+                            "description": "Tempo em segundos que o Rastreador permanece no modo aprendizado ",
+                            "default": 60,
+                            "minimum": 0,
+                            "maximum": 65535
+                        },
+                        "timerValid": {
+                            "type": "number",
+                            "description": "Tempo em segundos de validade do último iButton lido após desligar a ignição",
+                            "default": 30,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                }
+            }
+        },
+        "ftp": {
+            "type": "object",
+            "properties": {
+                "primaryServer": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string",
+                            "description": "URL servidor FTP",
+                            "default": "ftp.quantatec.com.br"
+                        },
+                        "port": {
+                            "type": "number",
+                            "description": "Porta do servidor FTP",
+                            "default": 21,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                },
+                "secondaryServer": {
+                    "type": "object",
+                    "properties": {
+                        "ipAddress": {
+                            "type": "string",
+                            "description": "Endereço IP do Servidor FTP",
+                            "default": "0.0.0.0",
+                            "minLength": 7,
+                            "maxLength": 15
+                        },
+                        "ipPort": {
+                            "type": "number",
+                            "description": "Porta do servidor FTP",
+                            "default": 21,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                },
+                "security": {
+                    "type": "object",
+                    "properties": {
+                        "user": {
+                            "type": "string",
+                            "description": "Usuário para autenticar no servidor FTP",
+                            "default": "quanta"
+                        },
+                        "password": {
+                            "type": "string",
+                            "format": "password",
+                            "description": "Senha para autenticar no servidor FTP",
+                            "default": "**********"
+                        },
+                        "directory": {
+                            "type": "string",
+                            "description": "Diretório FTP no Servidor",
+                            "default": "FW_200_ENG"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
