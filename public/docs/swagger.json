@@ -15,6 +15,29 @@
     },
     "host": "moviasconnect.mybluemix.net",
     "basePath": "/api",
+    "tags": [
+        {
+            "name": "Input Parameters"
+        },
+        {
+            "name": "Linear Input Parameters"
+        },
+        {
+            "name": "Output Parameters"
+        },
+        {
+            "name": "Identification Parameters"
+        },
+        {
+            "name": "Configuration Parameters"
+        },
+        {
+            "name": "SIMCARD1 Parameters"
+        },
+        {
+            "name": "SIMCARD2 Parameters"
+        }
+    ],
     "schemes": [
         "https"
     ],
