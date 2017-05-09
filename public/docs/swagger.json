@@ -15,29 +15,6 @@
     },
     "host": "moviasconnect.mybluemix.net",
     "basePath": "/api",
-    "tags": [
-        {
-            "name": "Input Parameters"
-        },
-        {
-            "name": "Linear Input Parameters"
-        },
-        {
-            "name": "Output Parameters"
-        },
-        {
-            "name": "Identification Parameters"
-        },
-        {
-            "name": "Configuration Parameters"
-        },
-        {
-            "name": "SIMCARD1 Parameters"
-        },
-        {
-            "name": "SIMCARD2 Parameters"
-        }
-    ],
     "schemes": [
         "https"
     ],
@@ -688,6 +665,98 @@
                         "description": "Sucesso",
                         "schema": {
                             "$ref": "#/definitions/ftp"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/mqtt": {
+            "get": {
+                "summary": "Consulta dos parâmetros de Configuração MQTT",
+                "description": "API para consulta dos parâmetros de Configuração MQTT",
+                "tags": [
+                    "MQTT Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/mqtt"
+                        }
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            }
+        },
+        "/tracker": {
+            "get": {
+                "summary": "Consulta das Informações de Hardware",
+                "description": "API para consulta das Informações de Hardware",
+                "tags": [
+                    "Tracker Information Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/tracker"
                         }
                     },
                     "404": {
@@ -1825,6 +1894,175 @@
                             "type": "string",
                             "description": "Diretório FTP no Servidor",
                             "default": "FW_200_ENG"
+                        }
+                    }
+                }
+            }
+        },
+        "mqtt": {
+            "type": "object",
+            "properties": {
+                "connect": {
+                    "type": "object",
+                    "properties": {
+                        "cleanSession": {
+                            "type": "string",
+                            "default": "on",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "username": {
+                            "type": "string",
+                            "default": "use-token-auth"
+                        },
+                        "password": {
+                            "type": "string",
+                            "format": "password",
+                            "default": "**********"
+                        },
+                        "clientId": {
+                            "type": "string",
+                            "default": "d:"
+                        },
+                        "mqttVersion": {
+                            "type": "number",
+                            "default": 3
+                        },
+                        "brokerUrl": {
+                            "type": "string",
+                            "default": ".messaging.internetofthings.ibmcloud.com"
+                        },
+                        "brokerPort": {
+                            "type": "number",
+                            "default": 1883,
+                            "minimum": 0,
+                            "maximum": 65535
+                        }
+                    }
+                },
+                "publish": {
+                    "type": "object",
+                    "properties": {
+                        "qosLevel": {
+                            "type": "number",
+                            "default": 0,
+                            "minimum": 0,
+                            "maximum": 2
+                        },
+                        "willRetain": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "hasDup": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "keepTopic": {
+                            "type": "string",
+                            "default": "iot-2/evt/KeepAlive/fmt/bin"
+                        },
+                        "stateTopic": {
+                            "type": "string",
+                            "default": "iot-2/evt/State/fmt/bin"
+                        },
+                        "logTopic": {
+                            "type": "string",
+                            "default": "iot-2/evt/Log/fmt/bin"
+                        },
+                        "ackCmdTopic": {
+                            "type": "string",
+                            "default": "iot-2/evt/AckCmd/fmt/bin"
+                        }
+                    }
+                },
+                "subscribe": {
+                    "type": "object",
+                    "properties": {
+                        "qosLevel": {
+                            "type": "number",
+                            "default": 0,
+                            "minimum": 0,
+                            "maximum": 2
+                        },
+                        "hasDup": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        },
+                        "subscribeCmdTopic": {
+                            "type": "string",
+                            "default": "iot-2/cmd/command/fmt/bin"
+                        }
+                    }
+                }
+            }
+        },
+        "tracker": {
+            "type": "object",
+            "properties": {
+                "product": {
+                    "type": "object",
+                    "properties": {
+                        "productVersion": {
+                            "type": "string",
+                            "description": "Código da versão do Produto "
+                        },
+                        "fwVersionNumber": {
+                            "type": "string",
+                            "description": "Número do firmware "
+                        },
+                        "fwRevisionNumber": {
+                            "type": "string",
+                            "description": "Número da revisão do firmware "
+                        },
+                        "fwPrototypeNumber": {
+                            "type": "string",
+                            "description": "Número do protótipo do firmware "
+                        },
+                        "fwReleaseDay": {
+                            "type": "string",
+                            "description": "Dia de liberação do firmware "
+                        },
+                        "fwReleaseMonth": {
+                            "type": "string",
+                            "description": "Mês da liberação do firmware "
+                        },
+                        "fwReleaseYear": {
+                            "type": "string",
+                            "description": "Ano da liberação do firmware "
+                        },
+                        "hwVersionNumber": {
+                            "type": "string",
+                            "description": "Número da versão do hardware "
+                        },
+                        "hwRevisionNumber": {
+                            "type": "string",
+                            "description": "Número da revisão do hardware "
+                        },
+                        "modemModel": {
+                            "type": "string",
+                            "description": "Informa o modelo do Modem que está instalado "
+                        },
+                        "modemHasJamming": {
+                            "type": "string",
+                            "description": "Informa se o modem que está instalado possui Jamming Detection "
+                        },
+                        "iccidNumber": {
+                            "type": "string",
+                            "description": "Numero do ICCID do SIM card em uso em BCD "
                         }
                     }
                 }
