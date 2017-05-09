@@ -123,8 +123,8 @@
         },
         "/linearInput": {
             "get": {
-                "summary": "Consulta dos parâmetros de entrada linear",
-                "description": "API para consulta dos parâmetros de entrada linear",
+                "summary": "Consulta dos parâmetros de entradas lineares",
+                "description": "API para consulta dos parâmetros de entradas lineares",
                 "tags": [
                     "Linear Input Parameters"
                 ],
@@ -163,6 +163,62 @@
                     },
                     "404": {
                         "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Alteração dos parâmetros de entradas lineares",
+                "description": "API para alteração dos parâmetros de entradas lineares",
+                "tags": [
+                    "Linear Input Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Mensagem enviada pelo servidor para o Rastreador contendo parâmetros de configuração para serem alterados",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/linearInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    },
+                    "405": {
+                        "description": "JSON inválido"
+                    },
+                    "502": {
+                        "description": "O servidor não respondeu dentro do tempo limite."
                     }
                 }
             }
@@ -209,6 +265,62 @@
                     },
                     "404": {
                         "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Alteração dos parâmetros de configuração das Saídas",
+                "description": "API para alteração dos parâmetros de configuração das Saídas",
+                "tags": [
+                    "Output Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Mensagem enviada pelo servidor para o Rastreador contendo parâmetros de configuração para serem alterados",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/output"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    },
+                    "405": {
+                        "description": "JSON inválido"
+                    },
+                    "502": {
+                        "description": "O servidor não respondeu dentro do tempo limite."
                     }
                 }
             }
@@ -1389,16 +1501,6 @@
                 "block": {
                     "type": "object",
                     "properties": {
-                        "outputStatus": {
-                            "type": "string",
-                            "description": "Se (centralOn): Saída Acionada pela Central ou permanentemente - Se (trackerOn): Saída Acionada pelo Rastreador - Se (off): Saída Desligada",
-                            "default": "off",
-                            "enum": [
-                                "off",
-                                "trackerOn",
-                                "centralOn"
-                            ]
-                        },
                         "activationTime": {
                             "type": "number",
                             "description": "Indica quanto tempo a Saída ficará acionada expresso em segundos",
@@ -1429,16 +1531,6 @@
                 "genericNegative": {
                     "type": "object",
                     "properties": {
-                        "genericNegativeStatus": {
-                            "type": "string",
-                            "description": "Se (centralOn): Saída Acionada pela Central ou permanentemente - Se (trackerOn): Saída Acionada pelo Rastreador - Se (off): Saída Desligada",
-                            "default": "off",
-                            "enum": [
-                                "off",
-                                "trackerOn",
-                                "centralOn"
-                            ]
-                        },
                         "activationTime": {
                             "type": "number",
                             "description": "Indica quanto tempo a Saída ficará acionada expresso em segundos",
