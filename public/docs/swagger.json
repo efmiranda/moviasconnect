@@ -369,6 +369,62 @@
                         "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
                     }
                 }
+            },
+            "put": {
+                "summary": "Alteração dos parâmetros de Identificação",
+                "description": "API para alteração dos parâmetros de Identificação",
+                "tags": [
+                    "Identification Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Mensagem enviada pelo servidor para o Rastreador contendo parâmetros de configuração para serem alterados",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/identification"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    },
+                    "405": {
+                        "description": "JSON inválido"
+                    },
+                    "502": {
+                        "description": "O servidor não respondeu dentro do tempo limite."
+                    }
+                }
             }
         },
         "/configuration": {
@@ -415,6 +471,62 @@
                         "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
                     }
                 }
+            },
+            "put": {
+                "summary": "Alteração dos parâmetros de Configuração",
+                "description": "API para alteração dos parâmetros de Configuração",
+                "tags": [
+                    "Configuration Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Mensagem enviada pelo servidor para o Rastreador contendo parâmetros de configuração para serem alterados",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/configuration"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    },
+                    "405": {
+                        "description": "JSON inválido"
+                    },
+                    "502": {
+                        "description": "O servidor não respondeu dentro do tempo limite."
+                    }
+                }
             }
         },
         "/simcard1": {
@@ -459,6 +571,62 @@
                     },
                     "404": {
                         "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Alteração dos parâmetros de Configuração do SIMCARD1",
+                "description": "API para alteração dos parâmetros de Configuração do SIMCARD1",
+                "tags": [
+                    "SIMCARD1 Parameters"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "description": "ID do Produto",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    {
+                        "name": "serialNumber",
+                        "in": "query",
+                        "description": "Número de Série",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 8,
+                        "maxLength": 8
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Mensagem enviada pelo servidor para o Rastreador contendo parâmetros de configuração para serem alterados",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/simcard"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "404": {
+                        "description": "ID de Produto / Número de Série não existe ou não pertecnce a este cliente."
+                    },
+                    "405": {
+                        "description": "JSON inválido"
+                    },
+                    "502": {
+                        "description": "O servidor não respondeu dentro do tempo limite."
                     }
                 }
             }
@@ -1563,33 +1731,11 @@
         "identification": {
             "type": "object",
             "properties": {
-                "product": {
-                    "type": "object",
-                    "properties": {
-                        "productId": {
-                            "type": "string",
-                            "description": "Identificador do Produto",
-                            "default": "37",
-                            "minLength": 2,
-                            "maxLength": 2
-                        },
-                        "productVersion": {
-                            "type": "string",
-                            "description": "Versão do Produto",
-                            "default": "00",
-                            "minLength": 2,
-                            "maxLength": 2
-                        },
-                        "productSerialNumber": {
-                            "type": "string",
-                            "description": "Número de Série do Produto",
-                            "minLength": 8,
-                            "maxLength": 8
-                        }
-                    }
-                },
                 "primaryServer": {
                     "type": "object",
+                    "required": [
+                        "ipPort"
+                    ],
                     "properties": {
                         "ipAddress": {
                             "type": "string",
@@ -1606,6 +1752,9 @@
                 },
                 "secondaryServer": {
                     "type": "object",
+                    "required": [
+                        "ipPort"
+                    ],
                     "properties": {
                         "ipAddress": {
                             "type": "string",
